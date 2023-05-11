@@ -6,23 +6,24 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
+import { event } from 'jquery';
 
-// const env = 'https://flowchart-generator-production.up.railway.app';
-const env = 'http://localhost:8080';
+const env = 'https://flowchart-generator-production.up.railway.app';
+// const env = 'http://localhost:8080';
 
 function CodeConverter() {
   const [code, setCode] = useState('');
   const [converted, setConverted] = useState('');
 
   // const handleSubmit = async (event) => 
-  async function onChange(input)
+  async function onChange(input, event)
   {
     // event.preventDefault();
     setCode(input);
   }
 
   useEffect(()=> {
-    if (code.length < 2) {
+    if (code.length < 1) {
       return;
     }
     
@@ -35,23 +36,32 @@ function CodeConverter() {
     })
     .then((res) => res.json())
     .then((data) => {
-      setConverted(data?.converted);
-      console.log("req: " + code 
+      if(data?.converted){
+        setConverted(data.converted);
+      }      
+      console.log("event: " + JSON.stringify(event)
+      + "\nreq: " + code 
       + "\nresp: " + JSON.stringify(data));
     });
   }, [code]);
 
   return (
-    <div>
-      
-      <AceEditor
-        mode="java"
-        theme="github"
-        onChange={onChange}
-        name="UNIQUE_ID_OF_DIV"
-        editorProps={{ $blockScrolling: true }}
-      />
-      {converted && <Mermaid>{converted}</Mermaid>}
+    <div id='chartToolWrapper'>
+
+      <div id='codeEditor'>
+        <AceEditor
+            mode="java"
+            theme="github"
+            onChange={onChange}
+            name="UNIQUE_ID_OF_DIV"
+            editorProps={{ $blockScrolling: true }}
+        />
+      </div>
+
+      <div id='chart'>
+        {converted && <Mermaid>{converted}</Mermaid>}
+      </div>
+
     </div>
   );
   
