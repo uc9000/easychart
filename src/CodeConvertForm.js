@@ -7,9 +7,9 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
 import { event } from 'jquery';
+import * as Constants from "./Constants";
 
-const env = 'https://flowchart-generator-production.up.railway.app';
-// const env = 'http://localhost:8080';
+const env = Constants.ENVIRONMENT;
 
 function CodeConverter() {
   const [code, setCode] = useState('');
