@@ -7,12 +7,12 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
 import { event } from 'jquery';
-import * as Constants from "./Constants";
+import * as Constants from "./config/Constants";
 
 const env = Constants.ENVIRONMENT;
 
 function CodeConverter() {
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState(Constants.SAMPLE_CODE);
   const [converted, setConverted] = useState('');
 
   // const handleSubmit = async (event) => 
@@ -53,6 +53,7 @@ function CodeConverter() {
             mode="java"
             theme="github"
             onChange={onChange}
+            value={code}
             name="UNIQUE_ID_OF_DIV"
             editorProps={{ $blockScrolling: true }}
         />

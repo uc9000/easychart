@@ -1,0 +1,2 @@
+export const ENVIRONMENT = 'https://flowchart-generator-production.up.railway.app';
+export const SAMPLE_CODE = 'start_demo;\r\nif(if_condition){\r\n    do_smh;\r\n}else{\r\n    do_smh_else;\r\n    and_other_stuff;\r\n}\r\nwhile(while_condition){\r\n    then_do_this_many_times;\r\n    if(nested_condition){\r\n        you_can_also_make_sphagetti_like_this;\r\n    }\r\n    more_features_coming_soon;\r\n}\r\nend_demo;\r\n'
